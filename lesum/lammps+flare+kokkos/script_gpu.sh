@@ -11,8 +11,10 @@ INSTALL_DIR=${HOME}/builds/lammps/builds/lammps-release-gpu-kokkos-flare-plumed
 module purge
 module load gcc/12 CUDA/12.1 openmpi-cuda/4.1.5
 
+# You might try this CXX flags for slightly faster performance
+# -D CMAKE_CXX_FLAGS="-std=c++14 -O2 -g -DNDEBUG" \
+
 cmake ../cmake \
-    -D CMAKE_CXX_FLAGS="-std=c++14 -O2 -g -DNDEBUG" \
     -D CUDA_TOOLKIT_ROOT_DIR=$CUDA_PATH \
     -D PKG_KOKKOS=ON \
     -D Kokkos_ENABLE_CUDA=yes \
