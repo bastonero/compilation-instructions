@@ -1,0 +1,10 @@
+packages:
+  git:
+    externals:
+    - spec: git@2.43.5~tcltk
+      prefix: /usr
+  openmpi:
+    externals:
+    - spec: openmpi@4.1.6%gcc@11.2.0
+      prefix: /apps/SPACK/0.19.1/opt/linux-almalinux8-zen/gcc-11.2.0/openmpi-4.1.6-acfcymhhx5dvur53odzmbhlq6cl2reyx
+    buildable: false

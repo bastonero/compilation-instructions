@@ -44,7 +44,7 @@ After having followed the instructions below, use and adapt `script_gpu.sh`.
 
 ## Known issues
 
-- Problem related to Libtorch 1.11.0 in finding CUDA architecture: https://discuss.pytorch.org/t/cuda-not-found-in-cmake-when-upgrading-to-libtorch1-11/153972
+- If having problems with Torch not finding CUDA compiler: https://discuss.pytorch.org/t/cuda-not-found-in-cmake-when-upgrading-to-libtorch1-11/153972/6. Solution is to put `set(CMAKE_CUDA_COMPILER /path/to/bin/nvcc)` in lammps/cmake/CMakeLists.txt.
 - LAMMPS versions earlier than 20 Jan 2023 have an old Kokkos package which comes with a bug related to GCC v12. One simply needs to change a line in lammps/lib/kokkos/bin/nvcc_wrapper, in particular comment `default_arch="sm_35"` and uncomment the following one (should be `#default_arch="sm_50"`). Then the following script will work. Reference: https://github.com/lammps/lammps/issues/3584
 - There is an issue with Libtorch ~v2.2 and CUDA ARCH selection. Solution is to export TORCH_CUDA_ARCH_LIST (see below). Reference: https://github.com/pytorch/pytorch/issues/113948
 - There is a compatibility issue for stable LAMMPS versions above 29 Sep 2021 with pair_allegro. Just use the multicut branch. See: https://github.com/mir-group/pair_allegro/issues/30 

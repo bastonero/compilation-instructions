@@ -44,12 +44,11 @@ After having followed the instructions below, use and adapt `script_gpu.sh`.
 
 ## Known issues
 
-- Problem related to Libtorch 1.11.0 in finding CUDA architecture: https://discuss.pytorch.org/t/cuda-not-found-in-cmake-when-upgrading-to-libtorch1-11/153972
 - LAMMPS versions earlier than 20 Jan 2023 have an old Kokkos package which comes with a bug related to GCC v12. One simply needs to change a line in lammps/lib/kokkos/bin/nvcc_wrapper, in particular comment `default_arch="sm_35"` and uncomment the following one (should be `#default_arch="sm_50"`). Then the following script will work. Reference: https://github.com/lammps/lammps/issues/3584
 - There is an issue with Libtorch ~v2.2 and CUDA ARCH selection. Solution is to export TORCH_CUDA_ARCH_LIST (see below). Reference: https://github.com/pytorch/pytorch/issues/113948
 - There is a compatibility issue for stable LAMMPS versions above 29 Sep 2021 with pair_allegro. Just use the multicut branch. See: https://github.com/mir-group/pair_allegro/issues/30 
 - If you want to use the `pair_allegro/stress` branch (or the latest `multicut` branch), note that:
-    * If you compiled the Allegro potential having `nequip<6.0.0`, then you will encounter a problem. To solve it, you can:
+    * If you compiled the Allegro potential having `nequip<6.0.0`, then you will encounter an problem. To solve it, you can:
         1. Simply change in the LAMMPS input `pair_style allegro` to `pair_style allegro3232` (or allegro6464 or mixture of it). 
         32 and 64 refer how the model handles tensor types, which from `nequip=0.6.0` can also be mixed.
         2. Upgrade `nequip` to the develop branch (it should be v0.6.0). To do it, activate the python environment and run:

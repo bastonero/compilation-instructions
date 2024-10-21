@@ -1,0 +1,42 @@
+packages:
+  openmpi:
+    externals:
+    - spec: openmpi@4.1.5%gcc@12.3.0
+      prefix: /p/software/jurecadc/stages/2024/software/OpenMPI/4.1.5-GCC-12.3.0/ 
+      # modules: [OpenMPI,CUDA]
+      extra_attributes:
+        environment:
+          prepend_path:
+            LD_LIBRARY_PATH: /p/software/jurecadc/stages/2024/software/CUDA/12/lib/
+    - spec: openmpi@4.1.5%nvhpc@23.7
+      prefix: /p/software/jurecadc/stages/2024/software/OpenMPI/4.1.5-NVHPC-23.7-CUDA-12/ 
+    buildable: false
+  openblas:
+    externals:
+    - spec: openblas@0.3.23%nvhpc@23.7
+      prefix: /p/software/jurecadc/stages/2024/software/OpenBLAS/0.3.23-NVHPC-23.7-CUDA-12/
+    - spec: openblas@0.3.23%gcc@12.3.0
+      prefix: /p/software/jurecadc/stages/2024/software/OpenBLAS/0.3.23-GCC-12.3.0
+    buildable: false
+  fftw:
+    externals:
+    - spec: fftw@3.3.10%nvhpc@23.7
+      prefix: /p/software/jurecadc/stages/2024/software/FFTW/3.3.10-NVHPC-23.7-CUDA-12/
+    - spec: fftw@3.3.10%gcc@12.3.0
+      prefix: /p/software/jurecadc/stages/2024/software/FFTW/3.3.10-GCC-12.3.0
+    buildable: false
+  cuda:
+    externals:
+    - spec: cuda@12.2.0
+      prefix: /p/software/jurecadc/stages/2024/software/CUDA/12/
+    buildable: false
+  git:
+    externals:
+    - spec: git@2.41.0
+      prefix: /p/software/jurecadc/stages/2024/software/git/2.41.0-GCCcore-12.3.0-nodocs/ 
+    buildable: false
+  # cmake:
+  #   externals:
+  #   - spec: cmake@3.26.3
+  #     prefix: /p/software/jurecadc/stages/2024/software/CMake/3.26.3-GCCcore-12.3.0/ 
+  #   buildable: false
