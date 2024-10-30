@@ -3,7 +3,12 @@
 ```
 source $HOME/builds/spack/share/spack/setup-env.sh 
 module load gcc/11.2.0 openmpi/4.1.6-gcc11.2.0-cuda
-spack install q-e-sirius@git.b70bdfb4301d72643064a19c37c049376d2551a2 %gcc +libxc ^sirius@git.develop=248e1b3ae +fortran +nlcglib +cuda cuda_arch=80 ^nlcglib@1.0b +cuda cuda_arch=80 gpu_direct=true ^openmpi+cuda
+
+# Maximum 1 GPU per k-point
+spack install q-e-sirius@git.b70bdfb4301d72643064a19c37c049376d2551a2 %gcc +libxc ^sirius@git.develop=248e1b3ae +fortran +nlcglib +cuda cuda_arch=80 ^nlcglib@1.0b +cuda cuda_arch=80 ^openmpi+cuda
+
+# For multiple GPUs per k-point
+spack -e q-e-sirius-nlcg add "q-e-sirius@git.feat/md=develop-ristretto %gcc +libxc ^sirius@git.sirius-md=develop +fortran +nlcglib +cuda cuda_arch=80 ^nlcglib@develop+cuda cuda_arch=80 gpu_direct=true ^openmpi+cuda"
 ```
 
 # How to create an environment for specific version/compilation
@@ -12,8 +17,12 @@ spack install q-e-sirius@git.b70bdfb4301d72643064a19c37c049376d2551a2 %gcc +libx
 ```console
 spack env create q-e-sirius-nlcg
 spack -e q-e-sirius-nlcg add "q-e-sirius@git.develop-ristretto=f3a6233 %gcc +libxc ^sirius@git.develop=248e1b3ae +fortran +nlcglib +cuda cuda_arch=80 ^nlcglib@1.0b+cuda cuda_arch=80 gpu_direct=true ^openmpi+cuda"
-
 spack -e q-e-sirius-nlcg install
+
+spack env create q-e-sirius-nlcg-direct
+spack -e q-e-sirius-nlcg-direct add "q-e-sirius@git.feat/md=develop-ristretto %gcc +libxc ^sirius@git.sirius-md=develop +fortran +nlcglib +cuda cuda_arch=80 ^nlcglib@develop +cuda cuda_arch=80 gpu_direct=true ^openmpi+cuda"
+
+spack -e q-e-sirius-nlcg-direct install
 ```
 
 Problem: the latest version has new dependencies that are not catched, we need the latest spack version.
