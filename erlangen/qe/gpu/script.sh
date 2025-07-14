@@ -9,7 +9,7 @@ module load openmpi/4.1.3-nvhpc22.5-cuda
 module load fftw/3.3.10-nvhpc22.5-ompi-omp-cuda
 module load cuda/11.6.2
 
-export NVC=$(which mpicc)
+export NVC=$(which nvc)
 export MPIF90=$(which mpif90)
 
 # Git clone the repository with a specific version
@@ -23,8 +23,9 @@ cmake ../ \
  -D CMAKE_Fortran_COMPILER=$MPIF90 \
  -D QE_ENABLE_MPI_GPU_AWARE=ON \
  -D QE_ENABLE_CUDA=ON \
- -D QE_ENABLE_OPENACC=OFF \
  -D QE_ENABLE_OPENMP=ON \
+ -D QE_ENABLE_OPENACC=ON \
+ -D NVFORTRAN_CUDA_CC=80 \
  -D QE_FFTW_VENDOR=FFTW3
 
 make -j8 pwall ph
