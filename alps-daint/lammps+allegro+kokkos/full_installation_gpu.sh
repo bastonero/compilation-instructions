@@ -33,7 +33,7 @@ cmake ../cmake \
     -D CUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME \
     -D PKG_KOKKOS=ON \
     -D Kokkos_ENABLE_CUDA=yes \
-    -D Kokkos_ARCH_AMPERE80=yes \
+    -D Kokkos_ARCH_HOPPER90=yes \
     -D Kokkos_ENABLE_OPENMP=yes \
     -D BUILD_OMP=yes \
     -D CAFFE2_USE_CUDNN=1 \
