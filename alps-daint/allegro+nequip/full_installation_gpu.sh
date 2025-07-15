@@ -1,9 +1,10 @@
 #!/bin/bash -l
 
-uenv image pull pytorch/v2.6.0:v1
-uenv start pytorch/v2.6.0:v1 --view=default
+uenv image pull prgenv-gnu/25.06:rc5
+uenv start prgenv-gnu/25.06:rc5 --view=default
 
-python -m venv --system-site-packages $HOME/allegro
-source $HOME/allegro/bin/activate
+python3.11 -m venv --system-site-packages $HOME/.envs/allegro
+source $HOME/.envs/allegro/bin/activate
 
+pip install torch --index-url https://download.pytorch.org/whl/cu126
 pip install nequip-allegro
